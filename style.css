@@ -8,6 +8,7 @@
     --card-bg: #1e293b;
     --accent-color: #10b981;
     --accent-hover: #059669;
+    --border-color: #334155;
 }
 
 * {
@@ -29,21 +30,23 @@ body {
 /* Nawigacja i Nagłówki */
 header {
     text-align: center;
-    padding: 3rem 1rem;
+    padding: 4rem 1rem 2rem 1rem; /* Zwiększony padding góry */
     background: linear-gradient(180deg, rgba(30,41,59,1) 0%, rgba(15,23,42,1) 100%);
-    border-bottom: 1px solid #334155;
 }
 
 h1 {
-    font-size: 2.5rem;
+    font-size: 2.8rem;
     margin-bottom: 1rem;
     font-weight: 700;
+    background: linear-gradient(to right, #ffffff, var(--primary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .subtitle {
     color: #94a3b8;
-    font-size: 1.1rem;
-    margin-bottom: 2rem;
+    font-size: 1.2rem;
+    margin-bottom: 0; /* Reset marginesu, bo teraz jest sekcja obrazka */
 }
 
 /* Główny kontener */
@@ -52,11 +55,48 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 2rem 1rem;
+    padding: 0 1rem 4rem 1rem; /* Zmieniony padding */
     max-width: 1200px;
     margin: 0 auto;
     width: 100%;
 }
+
+/* --- NOWA SEKCJA DLA OBRAZKA --- */
+.featured-section {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 3rem; /* Odstęp od przycisków */
+}
+
+.featured-image-container {
+    max-width: 350px; /* Maksymalna szerokość kontenera */
+    width: 100%;
+    background-color: var(--card-bg);
+    padding: 1rem; /* Wewnętrzny margines ("ramka" wokół zdjecia) */
+    border-radius: 20px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Efekt uniesienia po najechaniu */
+.featured-image-container:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 30px 60px rgba(59, 130, 246, 0.2); /* Niebieska poświata */
+    border-color: var(--primary-color);
+}
+
+.featured-img {
+    width: 100%;
+    height: auto; /* Zachowuje proporcje */
+    display: block;
+    border-radius: 12px; /* Zaokrąglone rogi samego zdjęcia */
+    object-fit: cover;
+    /* Jeśli obrazek ma być kwadratowy jak w oryginale, odkomentuj poniższą linię: */
+    /* aspect-ratio: 1 / 1; */
+}
+/* ------------------------------- */
 
 /* Przyciski */
 .btn-container {
@@ -64,123 +104,42 @@ main {
     gap: 1.5rem;
     flex-wrap: wrap;
     justify-content: center;
+    width: 100%;
 }
 
 .btn {
     display: inline-block;
-    padding: 1rem 2rem;
+    padding: 1.2rem 2.5rem;
     background-color: var(--primary-color);
     color: white;
     text-decoration: none;
-    border-radius: 8px;
+    border-radius: 12px;
     font-weight: 600;
     transition: all 0.3s ease;
     text-transform: uppercase;
     letter-spacing: 1px;
     box-shadow: 0 4px 6px -1px rgba(59, 130, 246, 0.3);
+    text-align: center;
 }
 
 .btn:hover {
     background-color: var(--primary-hover);
-    transform: translateY(-2px);
-    box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.4);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px -3px rgba(59, 130, 246, 0.5);
 }
 
-.btn-download {
-    background-color: var(--accent-color);
-    box-shadow: 0 4px 6px -1px rgba(16, 185, 129, 0.3);
-}
-
-.btn-download:hover {
-    background-color: var(--accent-hover);
-    box-shadow: 0 10px 15px -3px rgba(16, 185, 129, 0.4);
-}
-
-.btn-back {
-    background-color: transparent;
-    border: 2px solid var(--primary-color);
-    margin-bottom: 2rem;
-    align-self: flex-start;
-}
-
-.btn-back:hover {
-    background-color: var(--primary-color);
-}
-
-/* Karty (Dla pluginów) */
-.card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    width: 100%;
-    margin-top: 2rem;
-}
-
-.card {
-    background-color: var(--card-bg);
-    border-radius: 12px;
-    padding: 2rem;
-    text-align: center;
-    border: 1px solid #334155;
-    transition: transform 0.3s ease;
-}
-
-.card:hover {
-    transform: translateY(-5px);
-}
-
-.card h2 {
-    margin-bottom: 1rem;
-    color: var(--primary-color);
-}
-
-/* Szczegóły pluginu */
-.plugin-details {
-    background-color: var(--card-bg);
-    border-radius: 12px;
-    padding: 3rem;
-    max-width: 800px;
-    width: 100%;
-    text-align: center;
-    border: 1px solid #334155;
-}
-
-.plugin-icon {
-    width: 120px;
-    height: 120px;
-    border-radius: 20px;
-    margin-bottom: 1.5rem;
-    object-fit: cover;
-    background-color: #334155; /* Zastępcze tło, gdyby obrazek się nie załadował */
-}
-
-.plugin-details p {
-    color: #cbd5e1;
-    margin-bottom: 2rem;
-    font-size: 1.1rem;
-}
-
-/* Wideo sekcja */
-.video-container {
-    width: 100%;
-    max-width: 800px;
-    aspect-ratio: 16 / 9;
-    margin-bottom: 2rem;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-}
-
-.video-container iframe {
-    width: 100%;
-    height: 100%;
-    border: none;
+/* Responsywność dla mniejszych ekranów */
+@media (max-width: 600px) {
+    h1 { font-size: 2rem; }
+    .btn { width: 100%; }
+    .featured-image-container { max-width: 280px; }
 }
 
 footer {
     text-align: center;
-    padding: 1.5rem;
+    padding: 2rem;
     color: #64748b;
-    border-top: 1px solid #334155;
+    border-top: 1px solid var(--border-color);
     margin-top: auto;
+    background-color: #0b1120;
 }
